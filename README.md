@@ -1,7 +1,7 @@
 # 简介
 
 - 这是一个基于near开发的旨在提供通用的vesting功能的合约.
-- 对Vesting的定义是: 权益所有者将权益分发给受益人。
+- 本合约对Vesting的定义是: 权益所有者(Owner)将权益(token)分发(Schedule)给受益人(Beneficiary)。
 - 合约里面有如下概念:
     - `Owner`: 权益所有者，是一个near账号。
     - `Beneficiary`: 受益人，是一个near账号。
