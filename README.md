@@ -80,8 +80,8 @@ pub enum Schedule {
 - 假如有新的未满足的Action，那新增功能的一个流程: 
 ![](imgs/new_action.png)
 
-  - 以暂停Vesting举例:
-  1. 首先在Schedule级别需要定义新的trait: Period
+  - 以暂停Vesting这个新的Action实现举例:
+  1. 首先在Schedule级别需要定义新的trait: Period ，只有实现了Period这种trait类型的Schedule才能暂停
   ```rust
   pub trait Period {
     fn get_remain_period(&self)->SecondTimeStamp;
@@ -91,7 +91,7 @@ pub enum Schedule {
     fn stop(&mut self);
   }
   ```
-  2. 使用定义新的Schedule Type,并实现Period和claim: 
+  2. 使用定义新的Schedule Type,并实现Period和claim，stop:
   ```rust
   pub struct ReleaseByPeriod {
     remain_period: Seconds,
@@ -105,5 +105,8 @@ pub enum Schedule {
   
   impl Claim for ReleaseByPeriod {
   }
+  
+  impl Stop for ReleaseByPeriod {
+  }
   ```
-  3. 在合约层实现OwnerAction trait的暂停的新函数. 对所有能暂停的Schedule进行暂停。 （这里rust不能在运行时判断是否实现了某个trait）
+  3. 在合约层实现OwnerAction trait的暂停的新函数. 对所有能暂停的Schedule进行暂停。 
