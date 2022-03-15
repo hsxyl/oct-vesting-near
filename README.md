@@ -72,12 +72,12 @@ pub enum Schedule {
 - 不同的Schedule Type实质上是不同的过程的trait的组合。
 
 # OwnerAction & BeneficiaryAction
-- 对接实际的需求。
+- Action对应实际的需求。
 - 目前已知的一些action:
   - Beneficiary可以更改Beneficiary.
   - Owner可以终止，暂停Vesting.
   。。。
-- 新的未满足的Action接入流程: 
+- 假如有新的未满足的Action，那新增功能的一个流程: 
 ![](imgs/new_action.png)
 
   - 以暂停Vesting举例:
