@@ -80,7 +80,8 @@ pub enum Schedule {
 - 假如有新的未满足的Action，那新增功能的一个流程: 
 ![](imgs/new_action.png)
 
-  - 以暂停Vesting这个新的Action实现举例:
+  - 以Owner暂停Vesting这个新的需求举例: 
+ 
   1. 首先在Schedule级别需要定义新的trait: Period ，只有实现了Period这种trait类型的Schedule才能暂停
   ```rust
   pub trait Period {
@@ -109,4 +110,14 @@ pub enum Schedule {
   impl Stop for ReleaseByPeriod {
   }
   ```
-  3. 在合约层实现OwnerAction trait的暂停的新函数. 对所有能暂停的Schedule进行暂停。 
+  3. 最后在合约层实现OwnerAction trait的暂停的新函数`stop`. 对所有能暂停的Schedule进行暂停：
+  首先在`OwnerAction trait`里新增stop函数让外部调用:
+  ```rust
+  pub trait OwnerAction {
+    fn stop(&mut self);
+  }
+  
+  impl OwnerAction for Contract {
+      
+  }
+  ```
