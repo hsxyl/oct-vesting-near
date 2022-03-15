@@ -23,7 +23,7 @@
 ![](imgs/vesting.png)
 
 # Schedule
-- vesting的通用性在Schedule上体现，Schedule是不同分发方式的集合:
+- vesting的通用性在Schedule上体现，Schedule是不同权益分发方式的集合:
 ```rust
 pub enum Schedule {
     NaturalTimeLinearRelease
